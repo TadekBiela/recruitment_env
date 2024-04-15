@@ -1,0 +1,13 @@
+set(PROJECT_NAME app LANGUAGES CXX)
+
+find_package(Qt6 COMPONENTS Core Widgets Gui Multimedia Network REQUIRED)
+
+set(APP_NAME app)
+
+aux_source_directory(. SRC_FILES)
+
+add_executable(${APP_NAME} MACOSX_BUNDLE ${SRC_FILES})
+
+target_link_libraries(${APP_NAME} PRIVATE Qt6::Core Qt6::Widgets Qt6::Gui Qt6::Multimedia Qt6::Network)
+
+set_target_properties(${APP_NAME} PROPERTIES AUTOMOC ON)
