@@ -1,13 +1,16 @@
-set(PROJECT_NAME app LANGUAGES CXX)
+add_subdirectory(test)
 
-find_package(Qt6 COMPONENTS Core Widgets Gui Multimedia Network REQUIRED)
+find_package(Qt6 COMPONENTS Widgets REQUIRED)
 
-set(APP_NAME app)
+set(LIB_NAME app)
 
+file(GLOB HEADER_FILES *.h)
 aux_source_directory(. SRC_FILES)
 
-add_executable(${APP_NAME} MACOSX_BUNDLE ${SRC_FILES})
+add_library(${LIB_NAME} STATIC ${HEADER_FILES} ${SRC_FILES})
 
-target_link_libraries(${APP_NAME} PRIVATE Qt6::Core Qt6::Widgets Qt6::Gui Qt6::Multimedia Qt6::Network)
+target_include_directories(${LIB_NAME} INTERFACE .)
 
-set_target_properties(${APP_NAME} PROPERTIES AUTOMOC ON)
+target_link_libraries(${LIB_NAME} PRIVATE Qt6::Widgets)
+
+set_target_properties(${LIB_NAME} PROPERTIES AUTOMOC ON)

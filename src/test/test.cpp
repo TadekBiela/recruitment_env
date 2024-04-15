@@ -7,5 +7,6 @@ class AppTests : public testing::Test
 
 TEST_F(AppTests, A_A_A)
 {
-    EXPECT_EQ(1, 1);
+    App app;
+    EXPECT_TRUE(app.foo());
 }
